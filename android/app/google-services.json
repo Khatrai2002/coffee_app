@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "250189220661",
+    "project_id": "coffee-22bf6",
+    "storage_bucket": "coffee-22bf6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250189220661:android:83288a5a748cd8165d9a7c",
+        "android_client_info": {
+          "package_name": "com.example.hari"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250189220661-e31b0gt9tem7t54tb3tp6nej9v144td6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hari",
+            "certificate_hash": "15aced60052d38d97c8a0024a24df7288bbad236"
+          }
+        },
+        {
+          "client_id": "250189220661-p0acseml409bjnq7j2j7plj5pv4hu0gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO2-qPwjr2v2nwfz-DxZoFJO8T_u0tNtk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250189220661-p0acseml409bjnq7j2j7plj5pv4hu0gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
