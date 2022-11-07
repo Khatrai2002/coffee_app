@@ -13,7 +13,7 @@ final String?message;
         ElevatedButton(onPressed: (){
           Navigator.pop(context);
         }, child: Center(
-          child: const Text("Ok"),
+          child:  Text("Ok"),
         ),
         style: ElevatedButton.styleFrom(primary: Colors.red),
         )

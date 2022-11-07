@@ -1,18 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_slideshow/flutter_image_slideshow.dart';
 import 'package:hari/class/appbarpage.dart';
 import 'package:hari/class/drawer.dart';
-
-import 'package:hari/items.dart';
 import 'package:hari/pages/cartmodel.dart';
 import 'package:provider/provider.dart';
-
-import '../globale/globle.dart';
-import 'cartpage.dart';
 import 'detailspage.dart';
-import 'login.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -30,12 +23,7 @@ class _HomeState extends State<Home> {
   CollectionReference _productss =
       FirebaseFirestore.instance.collection('users');
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,95 +110,100 @@ class _HomeState extends State<Home> {
                   }
 
                   return ListView.builder(
-                      itemCount: streamSnapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        final DocumentSnapshot documentSnapshot =
-                            streamSnapshot.data!.docs[index];
-                        final item = Item(
-                            id: documentSnapshot.id.toString(),
-                            name: documentSnapshot['name'],
-                            price: documentSnapshot['price']);
-                        return Card(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 120,
-                                width: 120,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            documentSnapshot['image']))),
-                              ),
-                              Column(
-                                children: [
-                                  Text(
-                                    documentSnapshot['name'].toString(),
-                                    style: const TextStyle(
-                                        fontSize: 25,
-                                        fontWeight: FontWeight.bold),
+                    itemCount: streamSnapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      final DocumentSnapshot documentSnapshot =
+                          streamSnapshot.data!.docs[index];
+                      final item = Item(
+                          id: documentSnapshot.id.toString(),
+                          name: documentSnapshot['name'],
+                          price: documentSnapshot['price']);
+                      return Card(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              height: 120,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    documentSnapshot['image'],
                                   ),
-                                  Text(
-                                    documentSnapshot['price'],
-                                    style: const TextStyle(
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Consumer<CartModel>(
-                                    builder: (context, cart, child) {
-                                      final checked = cart.getItems
-                                              .where((element) =>
-                                                  element.id ==
-                                                  documentSnapshot.id)
-                                              .toString() !=
-                                          "()";
-                                      return Checkbox(
-                                        value: checked,
-                                        onChanged: (val) {
-                                          setState(() {
-                                            if (val == true)
-                                              // ignore: curly_braces_in_flow_control_structures
-                                              cart.add(item);
-                                            else
-                                              cart.remove(item);
-                                          });
-                                        },
-                                      );
-                                    },
-                                  )
-                                ],
+                                ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 80),
-                                child: ElevatedButton(
-                                    style: ButtonStyle(backgroundColor:
-                                        MaterialStateProperty.resolveWith<
-                                            Color>(
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  documentSnapshot['name'].toString(),
+                                  style: const TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  documentSnapshot['price'],
+                                  style: const TextStyle(
+                                      fontSize: 19,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Consumer<CartModel>(
+                                  builder: (context, cart, child) {
+                                    final checked = cart.getItems
+                                            .where((element) =>
+                                                element.id ==
+                                                documentSnapshot.id)
+                                            .toString() !=
+                                        "()";
+                                    return Checkbox(
+                                      value: checked,
+                                      onChanged: (val) {
+                                        setState(() {
+                                          if (val == true)
+                                            // ignore: curly_braces_in_flow_control_structures
+                                            cart.add(item);
+                                          else
+                                            cart.remove(item);
+                                        });
+                                      },
+                                    );
+                                  },
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 80),
+                              child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty
+                                        .resolveWith<Color>(
                                       (Set<MaterialState> states) {
                                         if (states
                                             .contains(MaterialState.pressed))
                                           return const Color(0xff65350f);
                                         return Colors.black;
                                       },
-                                    )),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => DetailsPage(
-                                              id: documentSnapshot['id'],
-                                              name: documentSnapshot['name'],
-                                              price: documentSnapshot['price'],
-                                              image: documentSnapshot['image']),
-                                        ),
-                                      );
-                                    },
-                                    child: const Text("Details")),
-                              ),
-                            ],
-                          ),
-                        );
-                      });
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailsPage(
+                                            id: documentSnapshot['id'],
+                                            name: documentSnapshot['name'],
+                                            price: documentSnapshot['price'],
+                                            image: documentSnapshot['image']),
+                                      ),
+                                    );
+                                  },
+                                  child: const Text("Details")),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  );
                 },
               ),
             ),

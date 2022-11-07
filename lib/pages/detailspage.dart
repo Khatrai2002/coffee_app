@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hari/class/appbarpage.dart';
-import 'package:hari/class/drawer.dart';
-import 'package:hari/items.dart';
-import 'package:hari/pages/cartmodel.dart';
-import 'package:provider/provider.dart';
+
 
 class DetailsPage extends StatefulWidget {
   final String? name;
@@ -89,7 +85,7 @@ class _LastState extends State<DetailsPage> {
                         (Set<MaterialState> states) {
                           if (states.contains(MaterialState.pressed))
                             return Colors.black;
-                          return Color(0xff65350f);
+                          return const Color(0xff65350f);
                         },
                       )),
                       onPressed: () {

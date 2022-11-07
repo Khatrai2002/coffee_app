@@ -20,11 +20,11 @@ class _CartListState extends State<CartList> {
     return Consumer<CartModel>(
       builder: (context, cart, child) => Scaffold(
         appBar: AppBar(
-          title: Text('Cart'),
-          actions: [
+          title: const Text('Cart'),
+          actions:const [
             Center(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding:  EdgeInsets.all(8.0),
               ),
             ),
           ],
@@ -36,12 +36,12 @@ class _CartListState extends State<CartList> {
               index,
             ) {
               return Dismissible(
-                key: Key('hello'),
+                key:const Key('hello'),
                 background:
-                    Container(color: Colors.red, child: Icon(Icons.delete)),
+                    Container(color: Colors.red, child:const Icon(Icons.delete)),
                 secondaryBackground: Container(
-                    color: Colors.green, child: Icon(Icons.arrow_back_ios)),
-                resizeDuration: Duration(seconds: 5),
+                    color: Colors.green, child: const Icon(Icons.arrow_back_ios)),
+                resizeDuration:const Duration(seconds: 5),
                 child: Card(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hari/globale/globle.dart';
 
 import '../pages/cartpage.dart';
 
@@ -13,14 +12,10 @@ class AppBarPage extends StatefulWidget {
 class _AppbarPageState extends State<AppBarPage> {
   @override
   Widget build(BuildContext context) {
-    return
-
-        
-
-        PreferredSize(
-      preferredSize: Size.fromHeight(100),
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(100),
       child: AppBar(
-          title: Text(sharedPreferences!.getString("name")!),
+          // title: Text(sharedPreferences!.getString("name")!),
           backgroundColor: const Color(0xff65350f),
           actions: [
             IconButton(
@@ -28,7 +23,7 @@ class _AppbarPageState extends State<AppBarPage> {
                   var res = await Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CartList(),
+                      builder: (context) => const CartList(),
                     ),
                   );
                 },
@@ -39,5 +34,5 @@ class _AppbarPageState extends State<AppBarPage> {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }

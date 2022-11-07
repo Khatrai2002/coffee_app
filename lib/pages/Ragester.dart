@@ -302,7 +302,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: const Color.fromARGB(255, 101, 179, 157)),
                       child: const Center(
                         child: Text(
-                          "LOGIN",
+                          "REGISTER",
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
